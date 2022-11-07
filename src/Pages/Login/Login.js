@@ -2,19 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+  };
   return (
     <div className="w-3/4 mx-auto  p-4 rounded-md shadow sm:p-8 dark:bg-gray-900 dark:text-gray-100">
       <h2 className="mb-3 text-3xl font-semibold text-center">
         Login to your account
       </h2>
       <form
-        novalidate=""
-        action=""
         className="space-y-8 ng-untouched ng-pristine ng-valid "
+        onSubmit={handleSubmit}
       >
         <div className="space-y-4">
           <div className="space-y-2">
-            <label for="email" className="block text-sm text-left">
+            <label htmlFor="email" className="block text-sm text-left">
               Email address
             </label>
             <input
@@ -27,7 +33,7 @@ const Login = () => {
           </div>
           <div className="space-y-2">
             <div className="flex justify-between">
-              <label for="password" className="text-sm">
+              <label htmlFor="password" className="text-sm">
                 Password
               </label>
               <Link
