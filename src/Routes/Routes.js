@@ -5,6 +5,7 @@ import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Logout from "../Pages/Logout/Logout";
 import Services from "../Pages/Services/Services/Services";
+import SignUp from "../Pages/SignUp/SignUp";
 
 const routes = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const routes = createBrowserRouter([
       {
         path: "/logout",
         element: <Logout></Logout>,
+      },
+      {
+        path: "/signup",
+        element: <SignUp></SignUp>,
       },
       {
         path: "/blog",

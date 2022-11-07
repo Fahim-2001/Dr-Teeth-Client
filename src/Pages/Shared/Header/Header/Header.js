@@ -28,7 +28,7 @@ const Header = () => {
         </ul>
         <Link
           rel="noopener noreferrer"
-          href="#"
+          to="/home"
           aria-label="Back to homepage"
           className="flex items-center p-2"
         >
