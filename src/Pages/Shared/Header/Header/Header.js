@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../../contexts/AuthContexts/AuthProvider";
 import logo from "../../../../images/logo.jpg";
 import "./Header.css";
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((e) => console.log(e));
+  };
   return (
     <header className="p-4 dark:bg-gray-800 dark:text-gray-100 header">
       <div className="container flex justify-between h-16 mx-auto md:justify-center md:space-x-8">
@@ -50,13 +57,22 @@ const Header = () => {
             </Link>
           </li>
           <li className="flex">
-            <Link
-              rel="noopener noreferrer"
-              to="/login"
-              className="flex items-center px-4 -mb-1  text-xl hover:text-sky-400 text-white hover:border-t-2 hover:border-b-2"
-            >
-              Login
-            </Link>
+            {user?.uid ? (
+              <Link
+                onClick={handleLogOut}
+                className="flex items-center px-4 -mb-1  text-xl hover:text-sky-400 text-white hover:border-t-2 hover:border-b-2"
+              >
+                Log Out
+              </Link>
+            ) : (
+              <Link
+                rel="noopener noreferrer"
+                to="/login"
+                className="flex items-center px-4 -mb-1  text-xl hover:text-sky-400 text-white hover:border-t-2 hover:border-b-2"
+              >
+                Login
+              </Link>
+            )}
           </li>
         </ul>
         <button title="Button" type="button" className="p-4 md:hidden">

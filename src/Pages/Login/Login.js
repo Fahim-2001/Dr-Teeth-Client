@@ -1,13 +1,40 @@
-import React from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContexts/AuthProvider";
 
 const Login = () => {
+  const { user, signIn, googleSignIn } = useContext(AuthContext);
+  const provider = new GoogleAuthProvider();
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    console.log({ email, password });
+
+    signIn(email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn(provider)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
   return (
     <div className="w-3/4 mx-auto  p-4 rounded-md shadow sm:p-8 dark:bg-gray-900 dark:text-gray-100">
@@ -54,7 +81,7 @@ const Login = () => {
           </div>
         </div>
         <button
-          type="button"
+          type="submit"
           className="w-full px-8 py-3 text-gray-700 font-semibold rounded-md hover:bg-gray-700 hover:text-white"
         >
           Sign in
@@ -77,6 +104,7 @@ const Login = () => {
       </p>
       <div className="my-6 space-y-4">
         <button
+          onClick={handleGoogleSignIn}
           aria-label="Login with Google"
           type="button"
           className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
