@@ -10,7 +10,6 @@ const ServiceSection = () => {
     <div className="">
       <div className="drop-shadow-lg rounded-lg m-5 p-5 bg-white">
         <h1 className="text-4xl font-semibold my-8">{service_name}</h1>
-
         <img src={img} alt="" className="mx-auto h-60" />
         <div className="mx-10">
           <p className="text-lg text-left mx-">{details}</p>

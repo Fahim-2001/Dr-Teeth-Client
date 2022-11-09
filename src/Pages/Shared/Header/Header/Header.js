@@ -22,6 +22,59 @@ const Header = () => {
   return (
     <nav className="px-2 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
+        <div className="dropdown md:hidden">
+          <label tabIndex={0} className="btn btn-ghost btn-circle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h7"
+              />
+            </svg>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <Link to="/home">Home</Link>
+            </li>
+            <li>
+              <Link to="/services">Services</Link>
+            </li>
+            <li>
+              <Link>Blog</Link>
+            </li>
+            <li>
+              {user?.uid ? (
+                <>
+                  <Link to="/myreviews">My Reviews</Link>
+
+                  <Link to="/addreviews">Add Reviews</Link>
+
+                  <Link to="/logout" onClick={handleLogOut}>
+                    Logout
+                  </Link>
+                  <div className="avatar placeholder">
+                    <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
+                      <img src={user ? user.photoURL : <p>MX</p>} alt="" />
+                    </div>
+                    <p>{user?.displayName}</p>
+                  </div>
+                </>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
+            </li>
+          </ul>
+        </div>
         <Link to="/home" className="flex items-center">
           <img
             src={logo}
@@ -32,26 +85,9 @@ const Header = () => {
             Dr. Teeth
           </span>
         </Link>
-        <button
-          data-collapse-toggle="mobile-menu"
-          type="button"
-          className="inline-flex justify-center items-center ml-3 text-gray-400 rounded-lg md:hidden hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-500"
-          aria-controls="mobile-menu-2"
-          aria-expanded="false"
-        >
-          <span className="sr-only">Open main menu</span>
-          <svg
-            className="w-6 h-6"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"></path>
-          </svg>
-        </button>
-        <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
-          <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+
+        <div className="hidden w-full md:block md:w-auto " id="mobile-menu">
+          <ul className="flex flex-col items-center p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <Link
                 to="/home"
@@ -79,7 +115,7 @@ const Header = () => {
             </li>
             <li>
               {user?.uid ? (
-                <div className="flex">
+                <div className="flex items-center">
                   <Link
                     to="/myreviews"
                     className="block py-2 mr-4 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
@@ -99,6 +135,11 @@ const Header = () => {
                   >
                     Logout
                   </Link>
+                  <div className="avatar placeholder">
+                    <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
+                      <img src={user ? user.photoURL : <p>MX</p>} alt="" />
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <Link
