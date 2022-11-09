@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 const ServiceSection = () => {
   const singleService = useLoaderData();
   //   console.log(singleService[0]);
-  const { _id, service_name, price, img, details } = singleService[0];
+  const { service_name, price, img, details } = singleService[0];
 
   return (
     <div className="">
