@@ -1,98 +1,118 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../contexts/AuthContexts/AuthProvider";
 import logo from "../../../../images/logo.jpg";
 import "./Header.css";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLogOut = () => {
     logOut()
-      .then()
+      .then(() => {
+        navigate("/login");
+      })
       .catch((e) => console.log(e));
   };
+
+  <img
+    src={logo}
+    alt=""
+    style={{ height: "50px", borderRadius: "50%", margin: "10px" }}
+  />;
   return (
-    <header className="p-4 dark:bg-gray-800 dark:text-gray-100 header">
-      <div className="container flex justify-between h-16 mx-auto md:justify-center md:space-x-8">
-        <ul className="items-stretch hidden space-x-3 md:flex">
-          <li className="flex">
-            <Link
-              rel="noopener noreferrer"
-              to="/home"
-              className="flex items-center px-4 -mb-1  text-xl hover:text-sky-400 text-white hover:border-t-2 hover:border-b-2"
-            >
-              Home
-            </Link>
-          </li>
-          <li className="flex">
-            <Link
-              rel="noopener noreferrer"
-              to="/services"
-              className="flex items-center px-4 -mb-1  text-xl hover:text-sky-400 text-white hover:border-t-2 hover:border-b-2 dark:text-violet-400 dark:border-violet-400"
-            >
-              Services
-            </Link>
-          </li>
-        </ul>
-        <Link
-          rel="noopener noreferrer"
-          to="/home"
-          aria-label="Back to homepage"
-          className="flex items-center p-2"
-        >
+    <nav className="px-2 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+      <div className="container flex flex-wrap justify-between items-center mx-auto">
+        <Link to="/home" className="flex items-center">
           <img
             src={logo}
             alt=""
             style={{ height: "50px", borderRadius: "50%", margin: "10px" }}
           />
-          <p className="text-xl  text-white">Dr. Teeth</p>
+          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            Dr. Teeth
+          </span>
         </Link>
-        <ul className="items-stretch hidden space-x-3 md:flex">
-          <li className="flex">
-            <Link
-              rel="noopener noreferrer"
-              to="/blog"
-              className="flex items-center px-4 -mb-1  text-xl hover:text-sky-400 text-white hover:border-t-2 hover:border-b-2"
-            >
-              Blog
-            </Link>
-          </li>
-          <li className="flex">
-            {user?.uid ? (
-              <Link
-                onClick={handleLogOut}
-                className="flex items-center px-4 -mb-1  text-xl hover:text-sky-400 text-white hover:border-t-2 hover:border-b-2"
-              >
-                Log Out
-              </Link>
-            ) : (
-              <Link
-                rel="noopener noreferrer"
-                to="/login"
-                className="flex items-center px-4 -mb-1  text-xl hover:text-sky-400 text-white hover:border-t-2 hover:border-b-2"
-              >
-                Login
-              </Link>
-            )}
-          </li>
-        </ul>
-        <button title="Button" type="button" className="p-4 md:hidden">
+        <button
+          data-collapse-toggle="mobile-menu"
+          type="button"
+          className="inline-flex justify-center items-center ml-3 text-gray-400 rounded-lg md:hidden hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-500"
+          aria-controls="mobile-menu-2"
+          aria-expanded="false"
+        >
+          <span className="sr-only">Open main menu</span>
           <svg
+            className="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="w-6 h-6 dark:text-gray-100"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
+            <path d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"></path>
           </svg>
         </button>
+        <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
+          <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li>
+              <Link
+                to="/home"
+                className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
+                aria-current="page"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/services"
+                className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/blog"
+                className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                Blog
+              </Link>
+            </li>
+            <li>
+              {user?.uid ? (
+                <div className="flex">
+                  <Link
+                    to="/myreviews"
+                    className="block py-2 mr-4 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  >
+                    My Reviews
+                  </Link>
+                  <Link
+                    to="/addreviews"
+                    className="block py-2 mr-4 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  >
+                    Add Reviews
+                  </Link>
+                  <Link
+                    to="/logout"
+                    onClick={handleLogOut}
+                    className="block py-2 mr-4 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  >
+                    Logout
+                  </Link>
+                </div>
+              ) : (
+                <Link
+                  to="/login"
+                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                >
+                  Login
+                </Link>
+              )}
+            </li>
+          </ul>
+        </div>
       </div>
-    </header>
+    </nav>
   );
 };
 
