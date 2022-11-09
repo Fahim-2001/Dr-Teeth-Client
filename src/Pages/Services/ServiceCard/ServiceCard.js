@@ -1,10 +1,15 @@
 import React from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import { useNavigate } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
-  const { service_name, price, img, details } = service;
+  const { _id, service_name, price, img, details } = service;
+  const navigate = useNavigate();
+  const handleToServiceDetails = (id) => {
+    navigate(`/services/${id}`);
+  };
   return (
-    <div className="card lg:card-side bg-base-100 shadow-xl ">
+    <div className="card lg:card-side bg-base-100 shadow-xl my-4">
       <PhotoProvider
         speed={() => 800}
         easing={(type) =>
@@ -24,7 +29,12 @@ const ServiceCard = ({ service }) => {
         <p>{details}</p>
         <p>Cost : {price} BDT</p>
         <div className="card-actions justify-end">
-          <button className="btn ">Know More</button>
+          <button
+            className="btn btn-info"
+            onClick={() => handleToServiceDetails(_id)}
+          >
+            Know More
+          </button>
         </div>
       </div>
     </div>

@@ -1,8 +1,13 @@
 import React from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import { useNavigate } from "react-router-dom";
 
 const ServiceCardHome = ({ service }) => {
-  const { service_name, price, img, details } = service;
+  const { _id, service_name, price, img, details } = service;
+  const navigate = useNavigate();
+  const handleToServiceDetails = (id) => {
+    navigate(`/services/${id}`);
+  };
   return (
     <div className="card w-96 glass">
       <PhotoProvider
@@ -24,7 +29,12 @@ const ServiceCardHome = ({ service }) => {
         <p className="text-left">Price : {price} BDT</p>
         <p className="text-left">{details.slice(0, 100) + "..."}</p>
         <div className="card-actions justify-end">
-          <button className="btn">Know More</button>
+          <button
+            className="btn btn-info"
+            onClick={() => handleToServiceDetails(_id)}
+          >
+            Know More
+          </button>
         </div>
       </div>
     </div>

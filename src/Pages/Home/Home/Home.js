@@ -1,11 +1,12 @@
 import React from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Carousel from "../Carousel/Carousel";
+import DoctorIntro from "../DoctorIntro/DoctorIntro";
 import ServiceCardHome from "../ServiceCardHome/ServiceCardHome";
 
 const Home = () => {
   const services = useLoaderData();
-  console.log(services);
+  // console.log(services);
 
   const navigate = useNavigate();
   const toService = () => {
@@ -14,12 +15,12 @@ const Home = () => {
   return (
     <div>
       <Carousel></Carousel>
+      <DoctorIntro></DoctorIntro>
       <div>
-        <h1 className="text-6xl font-bold text-gray-800 text-center my-5">
+        <h1 className="text-6xl font-bold text-blue-500 text-center my-5">
           My Services
         </h1>
         <p className="text-xl font-semibold text-gray-500">
-          This is Dr. KK , a dentist with 12 years or practical expericences.
           Here is my services for you.
         </p>
       </div>
@@ -32,7 +33,7 @@ const Home = () => {
         ))}
       </div>
       <div>
-        <button className="btn btn-outline my-5" onClick={toService}>
+        <button className="btn btn-outline btn-info my-5" onClick={toService}>
           See All
         </button>
       </div>
