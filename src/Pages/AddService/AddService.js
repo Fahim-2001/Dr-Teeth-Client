@@ -19,7 +19,7 @@ const AddService = () => {
     };
     console.log(newService);
 
-    fetch(`http://localhost:5000/services`, {
+    fetch(`https://dr-teeth-server.vercel.app/services`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

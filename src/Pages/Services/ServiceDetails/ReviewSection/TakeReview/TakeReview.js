@@ -16,7 +16,7 @@ const TakeReview = () => {
     console.log(userReview);
 
     if (user?.uid) {
-      fetch("http://localhost:5000/reviews", {
+      fetch("https://dr-teeth-server.vercel.app/reviews", {
         method: "POST",
         headers: {
           "content-type": "application/json",

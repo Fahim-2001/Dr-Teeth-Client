@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthContexts/AuthProvider";
@@ -8,14 +7,14 @@ const MyReviews = () => {
   const { user } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState();
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user.email}`)
+    fetch(`https://dr-teeth-server.vercel.app/reviews?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setMyReviews(data));
   }, [user?.email]);
   console.log(myReviews);
 
   const handleDeleteMyReview = (id) => {
-    fetch(`http://localhost:5000/reviews/${id}`, {
+    fetch(`https://dr-teeth-server.vercel.app/reviews/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

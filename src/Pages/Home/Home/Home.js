@@ -3,6 +3,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import useTitle from "../../../Utilities/useTitle";
 import Carousel from "../Carousel/Carousel";
 import DoctorIntro from "../DoctorIntro/DoctorIntro";
+import IntroContent from "../IntroContent/IntroContent";
 import ServiceCardHome from "../ServiceCardHome/ServiceCardHome";
 
 const Home = () => {
@@ -38,6 +39,7 @@ const Home = () => {
           See All
         </button>
       </div>
+      <IntroContent></IntroContent>
     </div>
   );
 };
