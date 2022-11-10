@@ -9,9 +9,8 @@ const DisplayReview = () => {
       .then((data) => {
         setReviews(data);
       });
-  }, []);
+  }, [reviews]);
 
-  console.log(reviews);
   return (
     <div>
       <h1 className="text-4xl font-semibold my-4">Reviews</h1>

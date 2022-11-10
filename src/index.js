@@ -5,11 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AuthProvider from "./contexts/AuthContexts/AuthProvider";
 import "react-photo-view/dist/react-photo-view.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthProvider>
+      <ToastContainer position="top-right"></ToastContainer>
       <App />
     </AuthProvider>
   </React.StrictMode>

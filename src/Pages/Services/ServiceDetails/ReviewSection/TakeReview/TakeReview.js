@@ -59,6 +59,7 @@ const TakeReview = () => {
           <input
             type="text"
             name="photoURL"
+            defaultValue={user?.photoURL ? user.photoURL : ""}
             placeholder="Your photo URL here"
             className="input input-bordered input-info w-full max-w-xs "
           />

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../contexts/AuthContexts/AuthProvider";
 import logo from "../../../../images/logo.jpg";
@@ -50,22 +51,36 @@ const Header = () => {
               <Link to="/services">Services</Link>
             </li>
             <li>
-              <Link>Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
             <li>
               {user?.uid ? (
                 <>
                   <Link to="/myreviews">My Reviews</Link>
 
-                  <Link to="/addreviews">Add Reviews</Link>
+                  <Link to="/addservice">Add Service</Link>
 
                   <Link to="/logout" onClick={handleLogOut}>
                     Logout
                   </Link>
                   <div className="avatar placeholder">
-                    <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
-                      <img src={user ? user.photoURL : <p>MX</p>} alt="" />
-                    </div>
+                    <PhotoProvider
+                      speed={() => 800}
+                      easing={(type) =>
+                        type === 2
+                          ? "cubic-bezier(0.36, 0, 0.66, -0.56)"
+                          : "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                      }
+                    >
+                      <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
+                        <PhotoView
+                          src={user ? user.photoURL : <p>MX</p>}
+                          style={{ objectFit: "cover" }}
+                        >
+                          <img src={user ? user.photoURL : <p>MX</p>} alt="" />
+                        </PhotoView>
+                      </div>
+                    </PhotoProvider>
                     <p>{user?.displayName}</p>
                   </div>
                 </>
@@ -123,10 +138,10 @@ const Header = () => {
                     My Reviews
                   </Link>
                   <Link
-                    to="/addreviews"
+                    to="/addservice"
                     className="block py-2 mr-4 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   >
-                    Add Reviews
+                    Add Service
                   </Link>
                   <Link
                     to="/logout"
@@ -136,9 +151,23 @@ const Header = () => {
                     Logout
                   </Link>
                   <div className="avatar placeholder">
-                    <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
-                      <img src={user ? user.photoURL : <p>MX</p>} alt="" />
-                    </div>
+                    <PhotoProvider
+                      speed={() => 800}
+                      easing={(type) =>
+                        type === 2
+                          ? "cubic-bezier(0.36, 0, 0.66, -0.56)"
+                          : "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                      }
+                    >
+                      <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
+                        <PhotoView
+                          src={user ? user.photoURL : <p>MX</p>}
+                          style={{ objectFit: "cover" }}
+                        >
+                          <img src={user ? user.photoURL : <p>MX</p>} alt="" />
+                        </PhotoView>
+                      </div>
+                    </PhotoProvider>
                   </div>
                 </div>
               ) : (

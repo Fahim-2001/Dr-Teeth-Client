@@ -1,7 +1,11 @@
 import React from "react";
+import { toast } from "react-toastify";
+import useTitle from "../../Utilities/useTitle";
 
 const AddService = () => {
+  useTitle("Add Service");
   const handleAddService = (event) => {
+    event.preventDefault();
     const form = event.target;
     const service_name = form.service_name.value;
     const img = form.img.value;
@@ -27,6 +31,7 @@ const AddService = () => {
         console.log(data);
         if (data.acknowledged) {
           form.reset();
+          toast.success("Service Added Successfully!", { autoClose: 850 });
         }
       })
       .catch((err) => console.log(err));

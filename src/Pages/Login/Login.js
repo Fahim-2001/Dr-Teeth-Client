@@ -1,10 +1,14 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContexts/AuthProvider";
+import useTitle from "../../Utilities/useTitle";
 
 const Login = () => {
   const { user, signIn, googleSignIn } = useContext(AuthContext);
+  useTitle("Login");
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const handleSubmit = (event) => {
@@ -20,7 +24,7 @@ const Login = () => {
         const user = userCredential.user;
         console.log(user);
         form.reset();
-        navigate("/home");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);

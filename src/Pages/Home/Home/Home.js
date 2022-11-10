@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import useTitle from "../../../Utilities/useTitle";
 import Carousel from "../Carousel/Carousel";
 import DoctorIntro from "../DoctorIntro/DoctorIntro";
 import ServiceCardHome from "../ServiceCardHome/ServiceCardHome";
@@ -7,7 +8,7 @@ import ServiceCardHome from "../ServiceCardHome/ServiceCardHome";
 const Home = () => {
   const services = useLoaderData();
   // console.log(services);
-
+  useTitle("Home");
   const navigate = useNavigate();
   const toService = () => {
     navigate("/services");
